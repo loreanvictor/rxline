@@ -1,0 +1,3 @@
+describe('rxline', () => {
+  require('./line');
+});
