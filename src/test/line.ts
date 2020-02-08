@@ -1,14 +1,18 @@
+import { interval } from 'rxjs';
+import { take } from 'rxjs/operators';
+
 import { line } from '../line';
 
 
 describe('line', () => {
   it('should work (generally)', () => {
-    line([1, 2, 3, 4])
+    line(interval(1000).pipe(take(10)))
     .pipe(x => x * 2)
-    .pipe(x => { console.log(x); return x; })
+    .tap(console.log)
     .process()
     .pick(x => x > 5)
-    .pipe(console.log)
+    .pipe(x => `--> ${x}`)
+    .tap(console.log)
     .process();
   });
 });

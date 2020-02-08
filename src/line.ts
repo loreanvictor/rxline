@@ -24,6 +24,10 @@ export class Line<I, O> {
       return new Line(this.content$, this.transform.combine(Transform.from(funcOrTrans)));
   }
 
+  tap(func: TransFunc<O, void>): Line<I, O> {
+    return this.pipe((o: O) => { func(o); return o; });
+  }
+
   pick(func: TransFunc<O, boolean>): Line<I, O> {
     return this.pipe(new Transform((o: O) => Observable.create((observer: Observer<O>) => {
       (async() => {
