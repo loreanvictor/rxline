@@ -1,0 +1,48 @@
+{
+  "name": "rxline",
+  "version": "0.0.1",
+  "description": "rxjs-based task pipeline",
+  "main": "dist/es5/index.js",
+  "module": "dist/es6/index.js",
+  "types": "dist/es6/index.d.ts",
+  "scripts": {
+    "build": "tsc -p conf/typescript/es5.json && tsc -p conf/typescript/es6.json",
+    "pack": "rollup -c conf/rollup/es6.js && rollup -c conf/rollup/es5.js",
+    "test": "ts-node --project conf/typescript/test.json test.ts"
+  },
+  "files": [
+    "dist/es6",
+    "dist/es5",
+    "dist/bundles"
+  ],
+  "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/loreanvictor/rxline.git"
+  },
+  "author": "Eugene Ghanizadeh Khoub <ghanizadeh.eugene@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/loreanvictor/rxline/issues"
+  },
+  "homepage": "https://github.com/loreanvictor/rxline#readme",
+  "devDependencies": {
+    "@babel/core": "^7.8.4",
+    "@babel/preset-env": "^7.8.4",
+    "@types/chai": "^4.2.8",
+    "@types/mocha": "^7.0.1",
+    "@types/node": "^13.7.0",
+    "chai": "^4.2.0",
+    "mocha": "^7.0.1",
+    "rollup": "^1.31.0",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-terser": "^5.2.0",
+    "rollup-plugin-uglify": "^6.0.4",
+    "ts-node": "^8.6.2",
+    "tslib": "^1.10.0",
+    "typescript": "^3.7.5"
+  },
+  "dependencies": {
+    "rxjs": "^6.5.4"
+  }
+}
