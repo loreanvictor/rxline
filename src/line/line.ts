@@ -3,6 +3,8 @@ import { flatMap, toArray, share } from 'rxjs/operators';
 
 import { Transform, Function, identity } from './transform';
 import { ProcessingStrategy, sequentially } from './process';
+import { tap } from './tap';
+import { filter } from './filter';
 
 
 export type LineContent<I> = Observable<I> | Promise<I[]> | I[];
@@ -24,49 +26,9 @@ export class Line<I, O> {
       return new Line(this.content$, this.transform.combine(Transform.from(funcOrTrans)));
   }
 
-  tap(func: Function<O, unknown>): Line<I, O> {
-    return this.pipe((o: O) => { func(o); return o; });
-  }
-
-  groupBy(key: Function<O, {toString(): string}>): SimpleLine<SimpleLine<O>> {
-    const _subjects = <{[key: string]: ReplaySubject<O>}>{};
-    const obs$ = this.prep().content$.pipe(share());
-    return new Line(Observable.create((observer: Observer<Line<O, O>>) => {
-      obs$.subscribe({
-        next: v => {
-          const _key = key(v).toString();
-          if (!(_key in _subjects)) {
-            _subjects[_key] = new ReplaySubject<O>();
-            
-            observer.next(new Line(_subjects[_key], identity<O>()));
-          }
-
-          _subjects[_key].next(v);
-        },
-        error: err => {
-          observer.error(err);
-          Object.values(_subjects).forEach(sub => sub.error(err));
-        },
-        complete: () => {
-          observer.complete();
-          Object.values(_subjects).forEach(sub => sub.complete());
-        }
-      })
-    }), identity<Line<O, O>>());
-  }
-
-  pick(func: Function<O, boolean>): Line<I, O> {
-    return this.pipe(new Transform((o: O) => Observable.create((observer: Observer<O>) => {
-      (async() => {
-        try {
-          if (await func(o)) observer.next(o);
-          observer.complete();
-        } catch(err) {
-          observer.error(err);
-        }
-      })();
-    })));
-  }
+  pick(func: Function<O, boolean>): Line<I, O> { return this.pipe(filter(func)); }
+  peek(func: Function<O, unknown>): Line<I, O> { return this.pipe(tap(func)); }
+  funnel<X, Y>(func: (l: Line<I, O>) => Line<X, Y>): Line<X, Y> { return func(this); }
 
   process(strategy: ProcessingStrategy<I, O> = sequentially): SimpleLine<O> {
     return new Line(new Promise((next, error) => {
