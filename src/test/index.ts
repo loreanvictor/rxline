@@ -1,3 +1,4 @@
 describe('rxline', () => {
-  require('./line');
+  require('../line/test');
+  require('../util/test');
 });
