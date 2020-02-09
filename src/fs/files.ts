@@ -10,8 +10,7 @@ export interface Options {
   root?: string;
 }
 
-
-export function files$(path: string, options: Options = { recursive: true }): Observable<string> {
+function _files$(path: string, options: Options, depth: number): Observable<string> {
   options.recursive = options.recursive !== false;
   const abspath = options.root ? join(options.root, path) : path;
 
@@ -20,16 +19,13 @@ export function files$(path: string, options: Options = { recursive: true }): Ob
       if (err) observer.error(err);
       else {
         if (stats.isDirectory()) {
-          readdir(abspath, (err, res) => {
-            if (err) observer.error(err);
-            else if (options.recursive) {
-              merge(...res.map(name => files$(join(path, name), options))).subscribe(observer);
-            }
-            else {
-              res.forEach(name => observer.next(join(path, name)));
-              observer.complete();
-            }
-          });
+          if (options.recursive || depth === 0) {
+            readdir(abspath, (err, res) => {
+              if (err) observer.error(err);
+              else merge(...res.map(name => _files$(join(path, name), options, depth + 1))).subscribe(observer);
+            });
+          }
+          else observer.complete();
         }
         else {
           observer.next(path);
@@ -38,6 +34,11 @@ export function files$(path: string, options: Options = { recursive: true }): Ob
       }
     });
   });
+}
+
+
+export function files$(path: string, options: Options = { recursive: true }): Observable<string> {
+  return _files$(path, options, 0);
 }
 
 
