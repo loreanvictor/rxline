@@ -9,7 +9,7 @@ describe.only('files', () => {
   .drop(pathmatch(/.*\/test\/.*/))
   .pipe(readfile({ root: 'src' }))
   .pipe(extend(f => ({ lines: f.content.split('\n').length })))
-  .pipe(f => ({ path: f.path, lines: f.lines }))
+  .pipe(({path, lines}) => ({ path, lines }))
   .pipe(dropExtension())
   .peek(console.log)
   .process();
