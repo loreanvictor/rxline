@@ -27,6 +27,7 @@ export class Line<I, O> {
   }
 
   pick(func: Function<O, boolean>): Line<I, O> { return this.pipe(filter(func)); }
+  drop(func: Function<O, boolean>): Line<I, O> { return this.pipe(filter(f => !func(f))); }
   peek(func: Function<O, unknown>): Line<I, O> { return this.pipe(tap(func)); }
   funnel<X, Y>(func: (l: Line<I, O>) => Line<X, Y>): Line<X, Y> { return func(this); }
 
