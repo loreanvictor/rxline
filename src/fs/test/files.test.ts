@@ -8,7 +8,7 @@ describe.only('files', () => {
   files('fs', { root: 'src' })
   .drop(pathmatch(/.*\/test\/.*/))
   .pipe(readfile({ root: 'src' }))
-  .pipe(extend(f => ({ lines: f.content.split('\n').length })))
+  .pipe(extend(({ content }) => ({ lines: content.split('\n').length })))
   .pipe(({path, lines}) => ({ path, lines }))
   .pipe(dropExtension())
   .peek(console.log)
