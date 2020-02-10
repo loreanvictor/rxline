@@ -3,13 +3,19 @@ import { OperatorFunction } from 'rxjs';
 import { Transform } from './transform';
 
 
-export class Modifier<I, O> {
-  constructor(private op$: OperatorFunction<I, O>) {}
+export type ModifierFunc<A, B, C, D> = (t: Transform<A, B>) => Transform<C, D>;
 
-  public modify<X>(transform: Transform<X, I>): Transform<X, O> {
-    return new Transform(i => transform.apply(i).pipe(this.op$));
+
+export class Modifier<A, B, C, D> {
+  constructor(private func: ModifierFunc<A, B, C, D>) {}
+
+  public modify(transform: Transform<A, B>): Transform<C, D> {
+    return this.func(transform);
   }
 }
 
 
-export function mod<I, O>(op$: OperatorFunction<I, O>) { return new Modifier(op$); }
+export function mod<A, B, C, D>(func: ModifierFunc<A, B, C, D>) { return new Modifier(func); }
+export function mod$<X, I, O>(op$: OperatorFunction<I, O>): Modifier<X, I, X, O> { 
+  return mod(t => new Transform(i => t.apply(i).pipe(op$))); 
+}

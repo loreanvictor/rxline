@@ -20,7 +20,7 @@ export class Line<I, O> {
     else this.content$ = from(content);
   }
 
-  pipe<X>(thing: Function<O, X> | Transform<O, X> | Modifier<O, X>): Line<I, X> {
+  pipe<X>(thing: Function<O, X> | Transform<O, X> | Modifier<I, O, I, X>): Line<I, X> {
     if (thing instanceof Transform)
       return new Line(this.content$, this.transform.combine(thing));
     else if (thing instanceof Modifier)
