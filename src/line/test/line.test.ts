@@ -9,7 +9,7 @@ import { reduce } from '../reduce';
 import { handleError } from '../handle-error';
 
 
-describe.only('Line', () => {
+describe('Line', () => {
   it('should do shit', () => {
     line(interval(10).pipe(take(23)))
     .pick(x => x > 10)

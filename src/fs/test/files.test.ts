@@ -1,18 +1,24 @@
 import { files } from '../files';
-import { readfile, File } from '../read-file';
-import { pathmatch } from '../path-match';
-import { dropExtension } from '../drop-extension';
-import { extend } from '../../line/extend';
+import { readFile } from '../read-file';
+import { pathMatch } from '../path-match';
+import { mapExt } from '../extension';
+import { mapContent, mapRoot } from '../map-file';
+import { writeFile } from '../write-file';
 
-describe('files', () => {
+
+describe.only('files', () => {
   it('should do stuff', () => {
-    files('fs', { root: 'src' })
-    .drop(pathmatch(/.*\/test\/.*/))
-    .pipe(readfile({ root: 'src' }))
-    .pipe(extend(({ content }) => ({ lines: content.split('\n').length })))
-    .pipe(({path, lines}) => ({ path, lines }))
-    .pipe(dropExtension())
-    .peek(console.log)
+
+    files('', { root: 'dist/es6' })
+    .pick(pathMatch(/.*\.js$/))
+    .peek(f => console.log('-->' + f.path))
+    .pipe(readFile())
+    .pipe(mapContent(c => ({ lines: c.split('\n').length })))
+    .pipe(mapContent(c => JSON.stringify(c, null, 2)))
+    .pipe(mapExt(() => '.json'))
+    .pipe(mapRoot(() => 'dist/meta'))
+    .pipe(writeFile())
     .process();
+
   });
 });

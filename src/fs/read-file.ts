@@ -1,23 +1,26 @@
-import { readFile } from 'fs';
+import { readFile as readf } from 'fs';
 import { join } from 'path';
-import { PathFull } from './types';
+import { File } from './types';
 
 
 export interface Options {
   root?: string;
 }
 
-export interface File extends PathFull {
-  content: string;
-  root: string;
-}
+export function readFile(options: Options = {}) {
+  const _root = options.root || '';
+  return function(f: string | File<undefined>): Promise<File<string>> {
+    let path: string; 
+    let root: string = _root;
+    if (typeof f === 'string') path = f;
+    else {
+      path = f.path;
+      root = root || f.root;
+    }
 
-export function readfile(options: Options = {}) {
-  const root = options.root || '';
-  return function(path: string): Promise<File> {
     const abspath = join(root, path);
     return new Promise((resolve, reject) => {
-      readFile(abspath, (err, res) => {
+      readf(abspath, (err, res) => {
         if (err) reject(err);
         else resolve({ path, root, content: res.toString() });
       });

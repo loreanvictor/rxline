@@ -4,17 +4,19 @@ import { lstat, readdir } from 'fs';
 
 import { line, SimpleLine } from '../line';
 
+import { File } from './types';
+
 
 export interface Options {
   recursive?: boolean;
   root?: string;
 }
 
-function _files$(path: string, options: Options, depth: number): Observable<string> {
+function _files$(path: string, options: Options, depth: number): Observable<File<undefined>> {
   options.recursive = options.recursive !== false;
   const abspath = options.root ? join(options.root, path) : path;
 
-  return Observable.create((observer: Observer<string>) => {
+  return Observable.create((observer: Observer<File<undefined>>) => {
     lstat(abspath, (err, stats) => {
       if (err) observer.error(err);
       else {
@@ -28,7 +30,7 @@ function _files$(path: string, options: Options, depth: number): Observable<stri
           else observer.complete();
         }
         else {
-          observer.next(path);
+          observer.next({ path, root: options.root || '', content: undefined });
           observer.complete();
         }
       }
@@ -37,11 +39,11 @@ function _files$(path: string, options: Options, depth: number): Observable<stri
 }
 
 
-export function files$(path: string, options: Options = { recursive: true }): Observable<string> {
+export function files$(path: string, options: Options = { recursive: true }): Observable<File<undefined>> {
   return _files$(path, options, 0);
 }
 
 
-export function files(path: string, options: Options = { recursive: true }): SimpleLine<string> {
+export function files(path: string, options: Options = { recursive: true }): SimpleLine<File<undefined>> {
   return line(files$(path, options));
 }
