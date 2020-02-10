@@ -1,8 +1,9 @@
-import { Observable, Observer, from, ReplaySubject } from 'rxjs';
-import { flatMap, toArray, share } from 'rxjs/operators';
+import { Observable, from } from 'rxjs';
+import { flatMap, toArray } from 'rxjs/operators';
 
+import { Modifier } from './modifier';
 import { Transform, Function, identity } from './transform';
-import { ProcessingStrategy, sequentially } from './process';
+import { ProcessingStrategy, sequentially, concurrently } from './process';
 import { tap } from './tap';
 import { filter } from './filter';
 
@@ -19,11 +20,13 @@ export class Line<I, O> {
     else this.content$ = from(content);
   }
 
-  pipe<X>(funcOrTrans: Function<O, X> | Transform<O, X>): Line<I, X> {
-    if (funcOrTrans instanceof Transform)
-      return new Line(this.content$, this.transform.combine(funcOrTrans));
+  pipe<X>(thing: Function<O, X> | Transform<O, X> | Modifier<O, X>): Line<I, X> {
+    if (thing instanceof Transform)
+      return new Line(this.content$, this.transform.combine(thing));
+    else if (thing instanceof Modifier)
+      return new Line(this.content$, thing.modify(this.transform));
     else
-      return new Line(this.content$, this.transform.combine(Transform.from(funcOrTrans)));
+      return new Line(this.content$, this.transform.combine(Transform.from(thing)));
   }
 
   pick(func: Function<O, boolean>): Line<I, O> { return this.pipe(filter(func)); }
