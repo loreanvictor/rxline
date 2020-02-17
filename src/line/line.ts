@@ -3,7 +3,7 @@ import { flatMap, toArray } from 'rxjs/operators';
 
 import { Modifier } from './modifier';
 import { Transform, Function, identity } from './transform';
-import { ProcessingStrategy, sequentially, concurrently } from './process';
+import { ProcessingStrategy, sequentially } from './process';
 import { tap } from './tap';
 import { filter } from './filter';
 
@@ -30,9 +30,9 @@ export class Line<I, O> {
   }
 
   pick(func: Function<O, boolean>): Line<I, O> { return this.pipe(filter(func)); }
-  drop(func: Function<O, boolean>): Line<I, O> { return this.pipe(filter(f => !func(f))); }
+  drop(func: Function<O, boolean>): Line<I, O> { return this.pipe(filter(async f => !await func(f))); }
   peek(func: Function<O, unknown>): Line<I, O> { return this.pipe(tap(func)); }
-  funnel<X, Y>(func: (l: Line<I, O>) => Line<X, Y>): Line<X, Y> { return func(this); }
+  funnel<T>(func: (l: Line<I, O>) => T): T { return func(this); }
 
   process(strategy: ProcessingStrategy<I, O> = sequentially): SimpleLine<O> {
     return new Line(new Promise((next, error) => {

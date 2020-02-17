@@ -7,7 +7,7 @@ import { SimpleLine, Line, line } from './line';
 export type KeyFunc<O> = (o: O) => {toString(): string};
 
 
-function _partition<O>(src: Line<any, O>, key: KeyFunc<O>) {
+function _partition<O>(src: Line<unknown, O>, key: KeyFunc<O>) {
   const _subjects = <{[key: string]: ReplaySubject<O>}>{};
   const obs$ = src.prep().content$.pipe(share());
   return line<SimpleLine<O>>(Observable.create((observer: Observer<Line<O, O>>) => {
@@ -35,9 +35,9 @@ function _partition<O>(src: Line<any, O>, key: KeyFunc<O>) {
 }
 
 
-export function partition<O>(key: KeyFunc<O>): (l: Line<any, O>) => SimpleLine<SimpleLine<O>>;
+export function partition<O>(key: KeyFunc<O>): (l: Line<unknown, O>) => SimpleLine<SimpleLine<O>>;
 export function partition<O>(src: Line<any, O>, key: KeyFunc<O>): SimpleLine<SimpleLine<O>>;
-export function partition<O>(srcOrKey: Line<any, O> | KeyFunc<O>, key?: KeyFunc<O>) {
-  if (key) return _partition(srcOrKey as Line<any, O>, key);
-  else return (l: Line<any, O>) => _partition(l, srcOrKey as KeyFunc<O>);
+export function partition<O>(srcOrKey: Line<unknown, O> | KeyFunc<O>, key?: KeyFunc<O>) {
+  if (key) return _partition(srcOrKey as Line<unknown, O>, key);
+  else return (l: Line<unknown, O>) => _partition(l, srcOrKey as KeyFunc<O>);
 }

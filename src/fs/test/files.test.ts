@@ -6,19 +6,19 @@ import { mapContent, mapRoot } from '../map-file';
 import { writeFile } from '../write-file';
 
 
-describe.only('files', () => {
+describe('files', () => {
   it('should do stuff', () => {
 
-    files('', { root: 'dist/es6' })
-    .pick(pathMatch(/.*\.js$/))
-    .peek(f => console.log('-->' + f.path))
-    .pipe(readFile())
-    .pipe(mapContent(c => ({ lines: c.split('\n').length })))
-    .pipe(mapContent(c => JSON.stringify(c, null, 2)))
-    .pipe(mapExt(() => '.json'))
-    .pipe(mapRoot(() => 'dist/meta'))
-    .pipe(writeFile())
-    .process();
+    // files('', { root: 'dist/es6' })
+    // .pick(pathMatch(/.*\.js$/))
+    // .peek(f => console.log('-->' + f.path))
+    // .pipe(readFile())
+    // .pipe(mapContent(c => ({ lines: c.split('\n').length })))
+    // .pipe(mapContent(c => JSON.stringify(c, null, 2)))
+    // .pipe(mapExt(() => '.json'))
+    // .pipe(mapRoot(() => 'dist/meta'))
+    // .pipe(writeFile())
+    // .process();
 
   });
 });
