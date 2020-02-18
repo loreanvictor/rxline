@@ -1,4 +1,4 @@
-# <img src="logo-cropped.svg" width="128px"/> RXLine
+# <img src="https://raw.githubusercontent.com/loreanvictor/rxline/master/logo-cropped.svg?sanitize=true" width="128px"/> RXLine
 
 A Javascript task pipeline library built on top of [RxJS](https://github.com/ReactiveX/rxjs).
 
