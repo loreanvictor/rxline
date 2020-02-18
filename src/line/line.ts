@@ -1,4 +1,4 @@
-import { Observable, from } from 'rxjs';
+import { Observable, from, Subscription } from 'rxjs';
 import { flatMap, toArray } from 'rxjs/operators';
 
 import { Modifier } from './modifier';
@@ -44,8 +44,14 @@ export class Line<I, O> {
     return new Line(strategy(this.content$, this.transform), identity<O>());
   }
 
-  collect(collector: Function<O[], unknown>, strategy: ProcessingStrategy<I, O> = sequentially) {
-    return this.prep(strategy).content$.pipe(toArray()).subscribe(collector);
+  collect(collector: Function<O[], unknown>): Subscription;
+  collect(strategy: ProcessingStrategy<I, O>, collector: Function<O[], unknown>): Subscription;
+  collect(collectorOrStrategy: Function<O[], unknown> | ProcessingStrategy<I, O>, 
+          collector?: Function<O[], unknown>) {
+    const strategy = collector ? collectorOrStrategy as ProcessingStrategy<I, O> : sequentially;
+    return this.prep(strategy).content$
+      .pipe(toArray())
+      .subscribe(collector || (collectorOrStrategy as Function<O[], unknown>));
   }
 }
 

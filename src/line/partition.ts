@@ -7,6 +7,9 @@ import { SimpleLine, Line, line } from './line';
 export type KeyFunc<O> = (o: O) => {toString(): string};
 
 
+//
+// TODO: rewrite with groupBy
+//
 function _partition<O>(src: Line<unknown, O>, key: KeyFunc<O>) {
   const _subjects = <{[key: string]: ReplaySubject<O>}>{};
   const obs$ = src.prep().content$.pipe(share());
