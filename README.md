@@ -9,6 +9,8 @@ npm i rxline
 
 ## Usage
 
+Super basic example:
+
 ```javascript
 import { line } from 'rxline';
 
@@ -17,6 +19,8 @@ line([1, 2, 3, 4])
   .pick(x => x > 3)
   .collect(console.log);
 ```
+
+More real-life example:
 
 ```javascript
 import { concurrently } from 'rxline';
@@ -35,3 +39,9 @@ files('.')                                                   // --> all files in
   .pipe(writeFile())                                         // --> write the files
   .process(concurrently);                                    // --> all in parallel.
 ```
+
+> Proper documentation coming soon.
+
+## Why?
+
+Because Gulp felt too opaque for me. I needed to be more in control.
