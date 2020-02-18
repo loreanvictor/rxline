@@ -20,7 +20,9 @@ line([1, 2, 3, 4])
 
 ```javascript
 import { concurrently } from 'rxline';
-import { files, pathMatch, readFile } from 'rxline/fs';
+import { files, pathMatch, 
+         readFile, writeFile, 
+         mapExt, mapContent, mapRoot } from 'rxline/fs';
 
 files('.')                                                   // --> all files in current directory (and sub-directories)
   .pick(pathMatch(/.*\.js$/))                                // --> pick javascript files
