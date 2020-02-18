@@ -23,3 +23,13 @@ export function isFile<T>(whatever: any): whatever is File<T> {
 export interface FileModificationOptions {
   overwrite: boolean;
 }
+
+
+export interface FileIOOptions {
+  root?: string;
+}
+
+
+export interface ScanOptions extends FileIOOptions {
+  recursive?: boolean;
+}

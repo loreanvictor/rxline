@@ -3,15 +3,10 @@ import { join } from 'path';
 import { lstat, readdir } from 'fs';
 
 import { line, SimpleLine } from '../line';
+import { ScanOptions } from './types';
 
 
-export interface Options {
-  recursive?: boolean;
-  root?: string;
-}
-
-
-function _dirs$(path: string, options: Options, depth: number): Observable<string> {
+function _dirs$(path: string, options: ScanOptions, depth: number): Observable<string> {
   options.recursive = options.recursive !== false;
   const abspath = options.root ? join(options.root, path) : path;
   return Observable.create((observer: Observer<string>) => {
@@ -38,11 +33,11 @@ function _dirs$(path: string, options: Options, depth: number): Observable<strin
   });
 }
 
-export function dirs$(path: string, options: Options = { recursive: true }): Observable<string> {
+export function dirs$(path: string, options: ScanOptions = { recursive: true }): Observable<string> {
   return _dirs$(path, options, 0);
 }
 
 
-export function dirs(path: string, options: Options = { recursive: true }): SimpleLine<string> {
+export function dirs(path: string, options: ScanOptions = { recursive: true }): SimpleLine<string> {
   return line(dirs$(path, options));
 }

@@ -1,13 +1,9 @@
 import { readFile as readf } from 'fs';
 import { join } from 'path';
-import { File } from './types';
+import { File, FileIOOptions } from './types';
 
 
-export interface Options {
-  root?: string;
-}
-
-export function readFile(options: Options = {}) {
+export function readFile(options: FileIOOptions = {}) {
   const _root = options.root || '';
   return function(f: string | File<undefined>): Promise<File<string>> {
     let path: string; 

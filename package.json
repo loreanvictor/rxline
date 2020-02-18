@@ -1,6 +1,6 @@
 {
   "name": "rxline",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "rxjs-based task pipeline",
   "main": "dist/es5/index.js",
   "module": "dist/es6/index.js",
@@ -13,7 +13,8 @@
   "files": [
     "dist/es6",
     "dist/es5",
-    "dist/bundles"
+    "dist/bundles",
+    "fs"
   ],
   "sideEffects": false,
   "repository": {

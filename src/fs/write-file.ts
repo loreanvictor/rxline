@@ -2,15 +2,10 @@ import { writeFile as writef } from 'fs';
 import { join } from 'path';
 
 import { ensurePath } from './ensure-path';
-import { File } from './types';
+import { File, FileIOOptions } from './types';
 
 
-export interface Options {
-  root?: string;
-}
-
-
-export function writeFile(options: Options = {}) {
+export function writeFile(options: FileIOOptions = {}) {
   const _root = options.root || '';
   return async function(f: File<string>): Promise<File<string>> {
     const path = f.path; 
