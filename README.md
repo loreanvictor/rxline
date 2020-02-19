@@ -1,5 +1,9 @@
 # <img src="https://raw.githubusercontent.com/loreanvictor/rxline/master/logo-cropped.svg?sanitize=true" width="128px"/> RxLine
 
+[![Build Status](https://badgen.net/travis/loreanvictor/rxline?label=build)](https://travis-ci.org/loreanvictor/rxline)
+[![NPM Version](https://badgen.net/npm/v/rxline?color=purple)](https://www.npmjs.com/package/rxline)
+[![License](https://badgen.net/github/license/loreanvictor/rxline)](LICENSE)
+
 A Javascript task pipeline library built on top of [RxJS](https://github.com/ReactiveX/rxjs). It helps you manage complex (possibly async) operations on collections (or streams) of entities. A common example is performing a series of tasks on a list of files (compiling sass to css or markdown to html).
 
 ```
