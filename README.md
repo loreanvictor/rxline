@@ -1,6 +1,6 @@
-# <img src="https://raw.githubusercontent.com/loreanvictor/rxline/master/logo-cropped.svg?sanitize=true" width="128px"/> RXLine
+# <img src="https://raw.githubusercontent.com/loreanvictor/rxline/master/logo-cropped.svg?sanitize=true" width="128px"/> RxLine
 
-A Javascript task pipeline library built on top of [RxJS](https://github.com/ReactiveX/rxjs).
+A Javascript task pipeline library built on top of [RxJS](https://github.com/ReactiveX/rxjs). It helps you manage complex (possibly async) operations on collections (or streams) of entities. A common example is performing a series of tasks on a list of files (compiling sass to css or markdown to html).
 
 ```
 npm i rxline
