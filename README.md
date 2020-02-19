@@ -1,6 +1,7 @@
 # <img src="https://raw.githubusercontent.com/loreanvictor/rxline/master/logo-cropped.svg?sanitize=true" width="128px"/> RxLine
 
 [![Build Status](https://badgen.net/travis/loreanvictor/rxline?label=build)](https://travis-ci.org/loreanvictor/rxline)
+[![Code Coverage](https://badgen.net/codecov/c/github/loreanvictor/rxline/)](https://codecov.io/gh/loreanvictor/rxline)
 [![NPM Version](https://badgen.net/npm/v/rxline?color=purple)](https://www.npmjs.com/package/rxline)
 [![License](https://badgen.net/github/license/loreanvictor/rxline)](LICENSE)
 
