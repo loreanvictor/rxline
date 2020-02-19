@@ -1,0 +1,11 @@
+{
+  "all": true,
+  "exclude": [
+    "conf/**",
+    "coverage/**",
+    "**/*.min.js",
+    "**/*.d.ts",
+    "**/test/**",
+    "test.ts"
+  ]
+}

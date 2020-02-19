@@ -19,4 +19,10 @@ describe('filter()', () => {
     .apply(4)
     .subscribe(() => done());
   });
+
+  it('should pass poteintial errors down the subscription line.', done => {
+    filter(x => new Promise((_, reject) => reject()))
+    .apply(42)
+    .subscribe(undefined, () => done());
+  });
 });
