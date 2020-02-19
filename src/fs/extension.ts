@@ -27,21 +27,23 @@ export function dropExt<T extends PathFull>(options?: FileModificationOptions):
 }
 
 
-export type ExtensionMapper = (path: string, root: string, content: string) => string | Promise<string>;
+export type ExtensionMapper = (ext: string, path: string, 
+                                root: string, content: string) => string | Promise<string>;
 
 export function mapExt<T extends PathFull>(map: ExtensionMapper, options?: FileModificationOptions): Function<T, T>;
-export function mapExt(map: Function<string, string>): Function<string, string>;
 export function mapExt<T extends PathFull>(
-  map: ExtensionMapper | Function<string, string>, 
+  map: ExtensionMapper, 
   options?: FileModificationOptions
 ) {
   async function _(f: T): Promise<T>;
   async function _(f: string): Promise<string>;
   async function _(f: string | T) {
     const corrected = (ext: string) => ext.startsWith('.') ? ext : '.' + ext;
-    if (typeof f === 'string') return _dropExt(f) + corrected(await (<Function<string, string>>map)(f));
+    const ext = (path: string) => { const { ext } = parse(path); return ext; };
+
+    if (typeof f === 'string') return _dropExt(f) + corrected(await map(ext(f), f, '', ''));
     else return mapPath(
-      async (path, root, content) => _dropExt(path) + corrected(await map(path, root, content)),
+      async (path, root, content) => _dropExt(path) + corrected(await map(ext(path), path, root, content)),
       options
     )(f);
   }

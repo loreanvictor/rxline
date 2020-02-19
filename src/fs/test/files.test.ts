@@ -5,10 +5,18 @@ import { mapExt } from '../extension';
 import { mapContent, mapRoot } from '../map-file';
 import { writeFile } from '../write-file';
 
+import { concurrently } from '../../line';
+
 
 describe('files', () => {
   it('should do stuff', () => {
 
+    // files('es5', { root: 'dist' })
+    //   .pick(pathMatch(/\.js$/))
+    //   .pipe(readFile())
+    //   .pipe(mapContent((content, path) => `/** file: ${path} **/\n` + content))
+    //   .pipe(writeFile())
+    //   .process(concurrently);
     // files('', { root: 'dist/es6' })
     // .pick(pathMatch(/.*\.js$/))
     // .peek(f => console.log('-->' + f.path))
