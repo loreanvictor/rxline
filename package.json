@@ -10,7 +10,7 @@
     "pack": "rollup -c conf/rollup/es6.js && rollup -c conf/rollup/es5.js",
     "test": "ts-node --project conf/typescript/test.json test.ts",
     "coverage": "nyc npm run test",
-    "sync-coverage": "nyc --reported lcov npm run test && npx codecov"
+    "sync-coverage": "nyc --reporter=lcov npm run test && npx codecov"
   },
   "files": [
     "dist/es6",
