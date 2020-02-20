@@ -37,4 +37,12 @@ describe('partition()', () => {
       });
     });
   });
+
+  it('should pass down errors in the original line.', done => {
+    line([1, 2, 3])
+    .pipe(() => { throw Error() })
+    .funnel(partition(x => x))
+    .prep()
+    .content$.subscribe(undefined, () => done());
+  });
 });
