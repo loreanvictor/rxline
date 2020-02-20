@@ -1,6 +1,6 @@
 import { should, expect } from 'chai'; should();
 
-import { Transform, identity, transform, transform$ } from '../transform';
+import { Transform, identity, transform } from '../transform';
 import { of, from, Observable } from 'rxjs';
 
 
@@ -46,24 +46,6 @@ describe('transform', () => {
         });
       });
     });
-  
-    describe('Transform.from()', () => {
-      it('should create a transform from a sync function applying the function.', done => {
-        Transform.from((x: number) => x * 42).apply(3).subscribe(res => {
-          res.should.equal(42 * 3);
-          done();
-        });
-      });
-  
-      it('should create a transform from an async function applying the function', done => {
-        Transform.from((x: number) => new Promise<number>(resolve => setTimeout(() => resolve(x * 42), 10)))
-          .apply(5)
-          .subscribe(res => {
-            res.should.equal(42 * 5);
-            done();
-          });
-      });
-    });
   });
   
   describe('identity()', () => {
@@ -94,15 +76,6 @@ describe('transform', () => {
           res.should.equal(42 * 5);
           done();
         });
-    });
-  });
-  
-  describe('transform$()', () => {
-    it('should create a Transform feeding given input to given factory and returning created observable.', () => {
-      const ob$ = Observable.create();
-      const T = transform$((i: number) => { i.should.equal(63); return ob$; });
-      T.should.be.instanceOf(Transform);
-      T.apply(63).should.equal(ob$);
     });
   });
 });

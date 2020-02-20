@@ -1,26 +1,26 @@
-import { Observable, Observer } from 'rxjs';
+import { Observable, from, of, throwError } from 'rxjs';
 import { concatMap } from 'rxjs/operators';
 
 
-export type Function<I, O> = (i: I) => O | Promise<O>;
+export type Function<I, O> = (i: I) => O | Promise<O> | Observable<O>;
 export type Function$<I, O> = (i: I) => Observable<O>;
 
 
 export class Transform<I, O> {
-  public static from<I, O>(func: Function<I, O>): Transform<I, O> {
-    return new Transform((i: I) => Observable.create((observer: Observer<O>) => {
-      (async() => {
-        try {
-          observer.next(await func(i));
-          observer.complete();
-        } catch(err) {
-          observer.error(err);
-        }
-      })();
-    }))
-  }
+  readonly op$: Function$<I, O>;
 
-  constructor(readonly op$: Function$<I, O>) { }
+  constructor(_op$: Function<I, O>) { 
+    this.op$ = i => {
+      try {
+        const _o = _op$(i);
+        if (_o instanceof Promise) return from(_o);
+        else if (_o instanceof Observable) return _o;
+        else return of(_o);
+      } catch(err) {
+        return throwError(err);
+      }
+    };
+  }
 
   combine<X>(transform: Transform<O, X>): Transform<I, X> {
     return new Transform((i: I) => this.op$(i).pipe(concatMap(transform.op$)));
@@ -30,6 +30,5 @@ export class Transform<I, O> {
 }
 
 
-export function identity<I>() { return Transform.from((i: I) => i); }
-export function transform<I, O>(func: Function<I, O>) { return Transform.from(func); }
-export function transform$<I, O>(func$: Function$<I, O>) { return new Transform(func$); }
+export function identity<I>() { return new Transform((i: I) => i); }
+export function transform<I, O>(func: Function<I, O>) { return new Transform(func); }

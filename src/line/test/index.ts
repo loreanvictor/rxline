@@ -8,4 +8,5 @@ describe('line', () => {
   require('./concat.test');
   require('./merge.test');
   require('./partition.test');
+  require('./reduce.test');
 });

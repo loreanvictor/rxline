@@ -9,7 +9,10 @@
     "build": "tsc -p conf/typescript/es5.json && tsc -p conf/typescript/es6.json",
     "pack": "rollup -c conf/rollup/es6.js && rollup -c conf/rollup/es5.js",
     "test": "ts-node --project conf/typescript/test.json test.ts",
-    "coverage": "nyc npm run test && npx codecov -t $(cat .codecov-token)"
+    "cov:view": "nyc npm run test && npm run cov:clean",
+    "cov:sync": "nyc npm run test && npx codecov -t $(cat .codecov-token) && npm run cov:clean",
+    "cov:travis": "nyc npm run test && npx codecov",
+    "cov:clean": "rm -fr ./.nyc_output && rm -fr ./coverage"
   },
   "files": [
     "dist/es6",
@@ -31,6 +34,7 @@
   "devDependencies": {
     "@babel/core": "^7.8.4",
     "@babel/preset-env": "^7.8.4",
+    "@istanbuljs/nyc-config-typescript": "^1.0.1",
     "@types/chai": "^4.2.8",
     "@types/mocha": "^7.0.1",
     "@types/node": "^13.7.0",
@@ -41,11 +45,19 @@
     "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-terser": "^5.2.0",
     "rollup-plugin-uglify": "^6.0.4",
+    "source-map-support": "^0.5.16",
     "ts-node": "^8.6.2",
     "tslib": "^1.10.0",
     "typescript": "^3.7.5"
   },
   "dependencies": {
     "rxjs": "^6.5.4"
+  },
+  "nyc": {
+    "extends": "@istanbuljs/nyc-config-typescript",
+    "all": true,
+    "include": ["src/**/*.ts"],
+    "exclude": ["src/**/test/*"],
+    "reporter": ["text", "lcov"]
   }
 }

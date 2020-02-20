@@ -4,13 +4,13 @@ import { share } from 'rxjs/operators';
 import { SimpleLine, Line, line } from './line';
 
 
-export type KeyFunc<O, K extends keyof O> = (o: O) => O[K];
+export type KeyFunc<O> = (o: O) => { toString(): string };
 
 
 //
 // TODO: rewrite with groupBy
 //
-function _partition<O, K extends keyof O>(src: Line<any, O>, key: KeyFunc<O, K>) {
+function _partition<O>(src: Line<any, O>, key: KeyFunc<O>) {
   const _subjects = <{[key: string]: ReplaySubject<O>}>{};
   const obs$ = src.prep().content$.pipe(share());
   return line<SimpleLine<O>>(Observable.create((observer: Observer<Line<O, O>>) => {
@@ -38,9 +38,9 @@ function _partition<O, K extends keyof O>(src: Line<any, O>, key: KeyFunc<O, K>)
 }
 
 
-export function partition<O, K extends keyof O>(key: KeyFunc<O, K>): (l: Line<any, O>) => SimpleLine<SimpleLine<O>>;
-export function partition<O, K extends keyof O>(src: Line<any, O>, key: KeyFunc<O, K>): SimpleLine<SimpleLine<O>>;
-export function partition<O, K extends keyof O>(srcOrKey: Line<any, O> | KeyFunc<O, K>, key?: KeyFunc<O, K>) {
+export function partition<O>(key: KeyFunc<O>): (l: Line<any, O>) => SimpleLine<SimpleLine<O>>;
+export function partition<O>(src: Line<any, O>, key: KeyFunc<O>): SimpleLine<SimpleLine<O>>;
+export function partition<O>(srcOrKey: Line<any, O> | KeyFunc<O>, key?: KeyFunc<O>) {
   if (key) return _partition(srcOrKey as Line<unknown, O>, key);
-  else return (l: Line<any, O>) => _partition(l, srcOrKey as KeyFunc<O, K>);
+  else return (l: Line<any, O>) => _partition(l, srcOrKey as KeyFunc<O>);
 }

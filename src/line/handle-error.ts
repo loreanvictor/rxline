@@ -1,5 +1,4 @@
 import { Observable, Observer } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 import { Transform } from './transform';
 import { mod } from './modifier';

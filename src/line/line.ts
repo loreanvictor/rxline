@@ -26,7 +26,7 @@ export class Line<I, O> {
     else if (thing instanceof Modifier)
       return new Line(this.content$, thing.modify(this.transform));
     else
-      return new Line(this.content$, this.transform.combine(Transform.from(thing)));
+      return new Line(this.content$, this.transform.combine(new Transform(thing)));
   }
 
   pick(func: Function<O, boolean>): Line<I, O> { return this.pipe(filter(func)); }

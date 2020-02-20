@@ -2,7 +2,7 @@ import { Observable, of } from 'rxjs';
 import { toArray, delay } from 'rxjs/operators';
 
 import { line, Line } from '../line';
-import { transform, transform$ } from '../transform';
+import { transform } from '../transform';
 import { mod } from '../modifier';
 import { concurrently } from '../process';
 
@@ -244,7 +244,7 @@ describe('line()', () => {
 
     it('should use given processing strategy to apply the transformation.', done => {
       line([1, 2, 3, 4])
-        .pipe(transform$(i => of(i).pipe(delay(20 - i * 5))))
+        .pipe(i => of(i).pipe(delay(20 - i * 5)))
         .pipe(x => x * 3)
         .drop(x => x == 6)
         .collect(concurrently, r => {

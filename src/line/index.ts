@@ -9,4 +9,3 @@ export * from './reduce';
 export * from './partition';
 export * from './merge';
 export * from './concat';
-export * from './extend';
