@@ -20,6 +20,16 @@ export interface LinearModifier<I, O> extends Modifier<any, I, any, O> {
 }
 
 
+export interface IdModVarOutput<I> extends Modifier<I, any, I, any> {
+  modify<O>(transform: Transform<I, O>): Transform<I, O>;
+}
+
+
+export interface IdModVarInput<O> extends ModifierFunc<any, O, any, O> {
+  modify<I>(transform: Transform<I, O>): Transform<I, O>;
+}
+
+
 export function mod<A, B, C, D>(func: ModifierFunc<A, B, C, D>) { return new Modifier(func); }
 export function mod$<I, O>(op$: OperatorFunction<I, O>): LinearModifier<I, O> { 
   return mod(t => new Transform(i => t.apply(i).pipe(op$))); 

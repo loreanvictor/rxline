@@ -45,4 +45,11 @@ describe('partition()', () => {
     .prep()
     .content$.subscribe(undefined, () => done());
   });
+
+  it('should also be applicable on lines directly.', done => {
+    partition(line([1, 2, 3, 4, 5, 6, 7, 8]), i => i % 3).collect(r => {
+      r.length.should.equal(3);
+      done();
+    });
+  });
 });

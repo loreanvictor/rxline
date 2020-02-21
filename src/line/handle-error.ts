@@ -1,14 +1,14 @@
 import { Observable, Observer } from 'rxjs';
 
 import { Transform } from './transform';
-import { mod } from './modifier';
+import { mod, IdModVarOutput } from './modifier';
 
 
 export type ErrorHandler<I> = (error: any, input: I, rethrow: (err: any) => void) => unknown;
 
 
-export function handleError<I, O>(handler: ErrorHandler<I>) {
-  return mod((transform: Transform<I, O>) => {
+export function handleError<I=any>(handler: ErrorHandler<I>) {
+  return mod(function<O>(transform: Transform<I, O>) {
     return new Transform<I, O>(i => {
       const obs$ = transform.apply(i);
       return Observable.create((observer: Observer<O>) => {
@@ -22,7 +22,5 @@ export function handleError<I, O>(handler: ErrorHandler<I>) {
         });
       });
     });
-  });
+  }) as IdModVarOutput<I>;
 }
-
-
