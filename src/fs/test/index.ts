@@ -1,4 +1,6 @@
 describe('fs', () => {
   require('./files.test');
-  require('./dirs.test.ts');
+  require('./dirs.test');
+  require('./path-match.test');
+  require('./extension.test');
 });

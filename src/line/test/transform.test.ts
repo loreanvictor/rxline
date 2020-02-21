@@ -2,6 +2,7 @@ import { should, expect } from 'chai'; should();
 
 import { Transform, identity, transform } from '../transform';
 import { of, from, Observable } from 'rxjs';
+import { delay } from 'rxjs/operators';
 
 
 describe('transform', () => {
@@ -45,6 +46,16 @@ describe('transform', () => {
           done();
         });
       });
+
+      it('should also work with given function.', done => {
+        new Transform((i: number) => i * 2)
+        .combine(i => i + 3)
+        .apply(42)
+        .subscribe(n => {
+          n.should.equal(42 * 2 + 3);
+          done();
+        });
+      });
     });
   });
   
@@ -76,6 +87,15 @@ describe('transform', () => {
           res.should.equal(42 * 5);
           done();
         });
+    });
+
+    it('should create a Transform applying given observable function.', done => {
+      const T = transform((x: number) => of(x).pipe(delay(5)));
+      T.should.be.instanceOf(Transform);
+      T.apply(5).subscribe((res: number) => {
+        res.should.equal(5);
+        done();
+      });
     });
   });
 });

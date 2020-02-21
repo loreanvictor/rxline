@@ -25,9 +25,8 @@ export function mapContent<I, O>(map: ContentMapper<I, O>, options?: FileModific
 
 export type PathMapper = (path: string, root: string, content: string) => string | Promise<string>;
 
-export function mapPath<T extends PathFull>(map: PathMapper, options?: FileModificationOptions): Function<T, T>;
-export function mapPath(map: PathMapper, options?: FileModificationOptions) {
-  return async function(f: PathFull | File<any>) {
+export function mapPath<T extends PathFull>(map: PathMapper, options?: FileModificationOptions) {
+  return async function(f: T | File<any>) {
     return _map(f, 'path', await map(f.path, (f as File<any>).root, (f as File<any>).content), options);
   }
 }

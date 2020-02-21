@@ -1,7 +1,5 @@
 import { parse, join } from 'path';
 
-import { Function } from '../line/transform';
-
 import { PathFull, FileModificationOptions } from './types';
 import { mapPath } from './map-file';
 
@@ -12,13 +10,13 @@ export function _dropExt(path: string) {
 }
 
 
-export function dropExt<T extends PathFull>(options?: FileModificationOptions): Function<PathFull, PathFull>;
-export function dropExt(): Function<string, string>;
-export function dropExt<T extends PathFull>(options?: FileModificationOptions): 
-  Function<string, string> | Function<T, T> {
-  function _(f: T): T;
-  function _(f: string): string;
-  function _(f: string | T) {
+export function dropExt(options?: FileModificationOptions): <T extends PathFull>(t: T) => Promise<T>;
+export function dropExt<S extends string>(): (s: string) => string;
+export function dropExt(options?: FileModificationOptions): 
+  ((s: string) => string) | (<T extends PathFull>(t: T) => Promise<T>) {
+  function _<T extends PathFull>(f: T): Promise<T>;
+  function _<T extends PathFull>(f: string): string;
+  function _<T extends PathFull>(f: string | T) {
     if (typeof f === 'string') return _dropExt(f);
     else return mapPath<T>(_dropExt, options)(f);
   }
@@ -30,19 +28,21 @@ export function dropExt<T extends PathFull>(options?: FileModificationOptions):
 export type ExtensionMapper = (ext: string, path: string, 
                                 root: string, content: string) => string | Promise<string>;
 
-export function mapExt<T extends PathFull>(map: ExtensionMapper, options?: FileModificationOptions): Function<T, T>;
-export function mapExt<T extends PathFull>(
-  map: ExtensionMapper, 
+export function mapExt(map: ExtensionMapper, options?: FileModificationOptions): 
+<T extends PathFull>(t: T) => Promise<T>;
+export function mapExt<S extends string>(map: (e: string, s: string) => string): (s: string) => Promise<string>;
+export function mapExt(
+  map: ExtensionMapper | ((e: string, s: string) => string),
   options?: FileModificationOptions
 ) {
-  async function _(f: T): Promise<T>;
-  async function _(f: string): Promise<string>;
-  async function _(f: string | T) {
+  async function _<T extends PathFull>(f: T): Promise<T>;
+  async function _<T extends PathFull>(f: string): Promise<string>;
+  async function _<T extends PathFull>(f: string | T) {
     const corrected = (ext: string) => ext.startsWith('.') ? ext : '.' + ext;
     const ext = (path: string) => { const { ext } = parse(path); return ext; };
 
     if (typeof f === 'string') return _dropExt(f) + corrected(await map(ext(f), f, '', ''));
-    else return mapPath(
+    else return mapPath<T>(
       async (path, root, content) => _dropExt(path) + corrected(await map(ext(path), path, root, content)),
       options
     )(f);

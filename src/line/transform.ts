@@ -22,10 +22,10 @@ export class Transform<I, O> {
     };
   }
 
-  combine<X>(transform: Transform<O, X>): Transform<I, X> {
-    // if (transform instanceof Transform)
+  combine<X>(transform: Transform<O, X> | Function<O, X>): Transform<I, X> {
+    if (transform instanceof Transform)
       return new Transform((i: I) => this.op$(i).pipe(concatMap(transform.op$)));
-    // else return this.combine(new Transform<O, X>(transform));
+    else return this.combine(new Transform<O, X>(transform));
   }
 
   apply(i: I) { return this.op$(i); }

@@ -18,6 +18,7 @@ function _dirs$(path: string, options: ScanOptions, depth: number): Observable<s
             if (depth !== 0) observer.next(path);
 
             readdir(abspath, (err, res) => {
+              /* istanbul ignore if */
               if (err) observer.error(err);
               else merge(...res.map(name => _dirs$(join(path, name), options, depth + 1))).subscribe(observer);
             });
