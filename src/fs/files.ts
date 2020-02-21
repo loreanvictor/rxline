@@ -18,6 +18,7 @@ function _files$(path: string, options: ScanOptions, depth: number): Observable<
         if (stats.isDirectory()) {
           if (options.recursive || depth === 0) {
             readdir(abspath, (err, res) => {
+              /* istanbul ignore next */
               if (err) observer.error(err);
               else merge(...res.map(name => _files$(join(path, name), options, depth + 1))).subscribe(observer);
             });

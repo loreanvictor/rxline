@@ -15,7 +15,7 @@ export interface File<T> extends PathFull {
 
 
 export function isFile<T>(whatever: any): whatever is File<T> {
-  return isPathFull(whatever) && (whatever as any).root && typeof (whatever as any).root === 'string' && 
+  return isPathFull(whatever) && 'root' in whatever && typeof (whatever as any).root === 'string' && 
         'content' in whatever;
 }
 
