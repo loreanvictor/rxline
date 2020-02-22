@@ -6,4 +6,6 @@ describe('fs', () => {
   require('./create-file.test');
   require('./read-file.test');
   require('./map-file.test');
+  require('./ensure-path.test');
+  require('./write-file');
 });

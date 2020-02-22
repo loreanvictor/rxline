@@ -15,6 +15,7 @@ export function writeFile(options: FileIOOptions = {}) {
     await ensurePath(abspath);
     return new Promise((resolve, reject) => {
       writef(abspath, f.content, err => {
+        /* istanbul ignore if */
         if (err) reject(err);
         else resolve(f);
       })

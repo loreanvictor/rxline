@@ -1,7 +1,7 @@
 import { dirname, join } from 'path';
 import { mkdir, exists } from 'fs';
 
-import { PathFull, File, isFile } from './types';
+import { PathFull, File } from './types';
 
 
 function _ensurePath(path: string): Promise<void> {
@@ -14,6 +14,7 @@ function _ensurePath(path: string): Promise<void> {
         if (dirname(dir) !== '.') await _ensurePath(dir);
 
         mkdir(dir, err => {
+          /* istanbul ignore if */
           if (err) reject(err);
           else resolve();
         });
@@ -25,6 +26,5 @@ function _ensurePath(path: string): Promise<void> {
 
 export function ensurePath(f: string | File<any> | PathFull) {
   if (typeof f === 'string') return _ensurePath(f);
-  else if (isFile(f)) return _ensurePath(join(f.root, f.path));
-  else return _ensurePath(f.path);
+  else return _ensurePath(join((f as any).root || '', f.path));
 }
