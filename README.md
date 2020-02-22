@@ -36,12 +36,12 @@ import { files, pathMatch,
 files('.')                                                   // --> all files in current directory (and sub-directories)
   .pick(pathMatch(/\.js$/))                                  // --> pick javascript files
   .peek(f => console.log('-->' + f.path))                    // --> log each file path
-  .pipe(readFile())                                          // --> read contents of the file
-  .pipe(mapContent(c => ({ lines: c.split('\n').length })))  // --> map its content to an object with number of lines in it
-  .pipe(mapContent(c => JSON.stringify(c, null, 2)))         // --> also stringify the json object
-  .pipe(mapExt(() => '.json'))                               // --> change extension to `.json`
-  .pipe(mapRoot(() => '.meta'))                              // --> change root directory to `.meta`
-  .pipe(writeFile())                                         // --> write the files
+  .pipe(readFile(),                                          // --> read contents of the file
+        mapContent(c => ({ lines: c.split('\n').length })),  // --> map its content to an object with number of lines in it
+        mapContent(c => JSON.stringify(c, null, 2)),         // --> also stringify the json object
+        mapExt(() => '.json'),                               // --> change extension to `.json`
+        mapRoot(() => '.meta'),                              // --> change root directory to `.meta`
+        writeFile())                                         // --> write the files
   .process(concurrently);                                    // --> all in parallel.
 ```
 
