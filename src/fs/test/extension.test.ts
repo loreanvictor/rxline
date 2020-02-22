@@ -33,10 +33,6 @@ describe('dropExt()', () => {
       done();
     });
   });
-
-  it('should also work properly on strings.', () => {
-    dropExt<string>()('something/something.html').should.equal('something/something');
-  });
 });
 
 describe('mapExt()', () => {
@@ -55,7 +51,7 @@ describe('mapExt()', () => {
   });
 
   it('should provide given map function with properties of the given file.', done => {
-    mapExt((ext, path, root, content) => {
+    mapExt((ext, path, root, content: any) => {
       ext.should.equal('.html');
       path.should.equal('bla/blabla.html');
       root.should.equal('ladida');
@@ -83,9 +79,5 @@ describe('mapExt()', () => {
       f.should.equal(F);
       done();
     });
-  });
-
-  it('should also work properly on strings.', () => {
-    mapExt<string>(() => 'json')('something/something.html').then(s => s.should.equal('something/something.json'));
   });
 });

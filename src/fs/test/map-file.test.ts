@@ -39,7 +39,7 @@ describe('mapContent()', () => {
 
 describe('mapPath()', () => {
   it('should update the path of given file using given factory.', done => {
-    mapPath((path, root, content) => {
+    mapPath((path, root, content: any) => {
       content.should.equal('z');
       path.should.equal('x');
       root.should.equal('y');
@@ -73,7 +73,7 @@ describe('mapPath()', () => {
 
 describe('mapRoot()', () => {
   it('should update the root of given file using given factory.', done => {
-    mapRoot((root, path, content) => {
+    mapRoot((root, path, content: any) => {
       content.should.equal('z');
       path.should.equal('x');
       root.should.equal('y');

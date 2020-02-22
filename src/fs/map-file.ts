@@ -23,19 +23,19 @@ export function mapContent<I=string, O=string>(map: ContentMapper<I, O>, options
 }
 
 
-export type PathMapper = (path: string, root: string, content: string) => string | Promise<string>;
+export type PathMapper<I> = (path: string, root: string, content: I) => string | Promise<string>;
 
-export function mapPath<T extends PathFull>(map: PathMapper, options?: FileModificationOptions) {
-  return async function(f: T | File<any>) {
-    return _map(f, 'path', await map(f.path, (f as File<any>).root, (f as File<any>).content), options);
+export function mapPath<I>(map: PathMapper<I>, options?: FileModificationOptions) {
+  return async function<T extends PathFull>(f: T | File<I>) {
+    return _map(f, 'path', await map(f.path, (f as File<I>).root, (f as File<I>).content), options) as File<I>;
   }
 }
 
 
-export type RootMapper = (root: string, path: string, content: string) => string | Promise<string>;
+export type RootMapper<I> = <I>(root: string, path: string, content: I) => string | Promise<string>;
 
-export function mapRoot(map: RootMapper, options?: FileModificationOptions) {
-  return async function(f: File<any>) {
-    return _map(f, 'root', await map(f.root, f.path, f.content), options);
+export function mapRoot<I>(map: RootMapper<I>, options?: FileModificationOptions) {
+  return async function(f: File<I>) {
+    return _map(f, 'root', await map(f.root, f.path, f.content), options) as File<I>;
   }
 }
