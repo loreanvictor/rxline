@@ -1,6 +1,6 @@
 {
   "name": "rxline",
-  "version": "0.9.1",
+  "version": "0.9.2",
   "description": "rxjs-based task pipelines",
   "keywords": [
     "build",
