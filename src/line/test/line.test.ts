@@ -71,6 +71,19 @@ describe('line()', () => {
         });
     });
 
+    it('should support multiple arguments and chain them.', done => {
+      const l = line([1, 2, 3, 4])
+        .pipe(
+          x => of(x * 2).pipe(delay(5)),
+          x => x + 3,
+          x => `#${x}`
+        )
+        .collect(r => {
+          r.should.eql(['#5', '#7', '#9', '#11']);
+          done();
+        });
+    });
+
     it('should return another line with same content.', () => {
       const l = line([1, 2, 3, 4]);
       const l2 = l.pipe(x => x * 2);
