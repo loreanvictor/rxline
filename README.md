@@ -34,7 +34,7 @@ import { files, pathMatch,
          mapExt, mapContent, mapRoot } from 'rxline/fs';
 
 files('.')                                                   // --> all files in current directory (and sub-directories)
-  .pick(pathMatch(/.*\.js$/))                                // --> pick javascript files
+  .pick(pathMatch(/\.js$/))                                  // --> pick javascript files
   .peek(f => console.log('-->' + f.path))                    // --> log each file path
   .pipe(readFile())                                          // --> read contents of the file
   .pipe(mapContent(c => ({ lines: c.split('\n').length })))  // --> map its content to an object with number of lines in it
