@@ -45,7 +45,7 @@ files('.')                                                   // --> all files in
   .process(concurrently);                                    // --> all in parallel.
 ```
 
-👉[Checkout the Wiki for more details.](https://github.com/loreanvictor/rxline/wiki)
+👉[Checkout the Wiki for more details.](https://ghanizadeh-eugene.gitbook.io/rxline/)
 
 ## Why?
 
