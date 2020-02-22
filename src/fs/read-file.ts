@@ -6,7 +6,7 @@ import { File, FileIOOptions } from './types';
 export function readFile(options: FileIOOptions = {}) {
   const _root = options.root || '';
   return function(f: string | File<undefined>): Promise<File<string>> {
-    let path: string; 
+    let path: string;
     let root: string = _root;
     if (typeof f === 'string') path = f;
     else {

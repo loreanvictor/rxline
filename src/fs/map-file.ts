@@ -15,8 +15,8 @@ function _map<F, K extends keyof F, V>(f: F, key: K, value: V,
 
 export type ContentMapper<I, O> = (content: I, path: string, root: string) => O | Promise<O>;
 
-export function mapContent<I, O>(map: ContentMapper<I, O>, options?: FileModificationOptions):
-  Function<File<I>, File<O>> {
+export function mapContent<I=string, O=string>(map: ContentMapper<I, O>, options?: FileModificationOptions):
+  (f: File<I>) => Promise<File<O>> {
   return async function(f: File<I>) {
     return _map(f, 'content', await map(f.content, f.path, f.root), options) as File<O>;
   }

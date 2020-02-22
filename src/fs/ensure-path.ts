@@ -4,7 +4,7 @@ import { mkdir, exists } from 'fs';
 import { PathFull, File, isFile } from './types';
 
 
-function _ensurePath(path: string) {
+function _ensurePath(path: string): Promise<void> {
   const dir = dirname(path);
 
   return new Promise((resolve, reject) => {

@@ -3,4 +3,7 @@ describe('fs', () => {
   require('./dirs.test');
   require('./path-match.test');
   require('./extension.test');
+  require('./create-file.test');
+  require('./read-file.test');
+  require('./map-file.test');
 });
