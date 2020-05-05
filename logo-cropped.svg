@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="752px" height="586px" viewBox="0 0 752 586" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 63.1 (92452) - https://sketch.com -->
+    <title>rxline</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0.87393022" y="0.759825462" width="32" height="192"></rect>
+        <rect id="path-3" x="0.0949932624" y="-6.82121026e-13" width="32" height="156"></rect>
+        <rect id="path-5" x="0.0188089456" y="-1.13686838e-13" width="32" height="128"></rect>
+        <circle id="path-7" cx="32" cy="32" r="32"></circle>
+        <rect id="path-9" x="0.678377541" y="1.13686838e-13" width="32" height="128"></rect>
+        <rect id="path-11" x="-2.27373675e-13" y="0.540490804" width="96" height="32"></rect>
+        <circle id="path-13" cx="32" cy="32.5404908" r="32"></circle>
+        <circle id="path-15" cx="32" cy="32" r="32"></circle>
+        <circle id="path-17" cx="32" cy="32" r="32"></circle>
+        <rect id="path-19" x="0.14290293" y="0.380706599" width="32" height="320"></rect>
+        <circle id="path-21" cx="32.5925761" cy="32" r="32"></circle>
+        <rect id="path-23" x="0" y="0" width="640" height="192" rx="96"></rect>
+    </defs>
+    <g id="misc" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="rxline" transform="translate(-96.000000, -198.000000)">
+            <g id="boxes" transform="translate(288.000000, 448.000000)">
+                <rect id="Rectangle" stroke="#50E3C2" stroke-width="8" fill="#4A90E2" x="4" y="4" width="120" height="120"></rect>
+                <rect id="Rectangle-Copy" stroke="#50E3C2" stroke-width="8" fill="#4A90E2" x="164" y="4" width="120" height="120"></rect>
+                <rect id="Rectangle-Copy-2" stroke="#50E3C2" stroke-width="8" fill="#4A90E2" x="324" y="4" width="120" height="120"></rect>
+                <rect id="Rectangle-Copy-3" fill="#50E3C2" x="0" y="0" width="128" height="48"></rect>
+                <rect id="Rectangle-Copy-4" fill="#50E3C2" x="160" y="0" width="128" height="48"></rect>
+                <rect id="Rectangle-Copy-5" fill="#50E3C2" x="320" y="0" width="128" height="48"></rect>
+            </g>
+            <g id="arm" transform="translate(375.872376, 324.195189) rotate(-30.000000) translate(-375.872376, -324.195189) translate(91.872376, 41.195189)">
+                <g id="forearm" transform="translate(291.575916, 282.866623) rotate(60.000000) translate(-291.575916, -282.866623) translate(77.575916, 88.366623)">
+                    <g transform="translate(15.126070, 195.240175)">
+                        <mask id="mask-2" fill="white">
+                            <use xlink:href="#path-1"></use>
+                        </mask>
+                        <use id="Mask" fill="#293462" xlink:href="#path-1"></use>
+                        <polygon id="Rectangle" fill="#091238" mask="url(#mask-2)" points="-11.5 4.63764622e-11 47.8789925 10.4621686 -13.9841102 226.312132 -26 20"></polygon>
+                    </g>
+                    <g id="hand" transform="translate(221.260217, 191.808312) rotate(60.000000) translate(-221.260217, -191.808312) translate(96.260217, 25.808312)">
+                        <g id="palm" transform="translate(17.905007, 176.000000)">
+                            <mask id="mask-4" fill="white">
+                                <use xlink:href="#path-3"></use>
+                            </mask>
+                            <use id="Mask" fill="#293462" xlink:href="#path-3"></use>
+                            <polygon id="Rectangle" fill="#091238" mask="url(#mask-4)" points="8.5 2.5 51 37 48 63 -6 22.5"></polygon>
+                        </g>
+                        <g id="finger2" transform="translate(134.044270, 178.530423) rotate(30.000000) translate(-134.044270, -178.530423) translate(46.544270, 98.530423)">
+                            <rect id="finger-base" fill="#D27E1B" x="6.82121026e-13" y="112" width="96" height="32"></rect>
+                            <g id="finger-tip" transform="translate(121.604738, 68.451435) rotate(30.000000) translate(-121.604738, -68.451435) translate(97.104738, 4.451435)">
+                                <g id="Path-6" transform="translate(15.981191, 0.000000)">
+                                    <mask id="mask-6" fill="white">
+                                        <use xlink:href="#path-5"></use>
+                                    </mask>
+                                    <use id="Mask" fill="#EC9B3B" xlink:href="#path-5"></use>
+                                    <polygon fill="#D27E1B" mask="url(#mask-6)" points="71.0764336 78.6203385 41.8025589 72.1879702 7.8186356e-14 100.592126 20.5788383 130.948533"></polygon>
+                                </g>
+                                <rect id="Rectangle-Copy-9" fill="#3C4245" x="0" y="0" width="16" height="32"></rect>
+                                <rect id="Rectangle-Copy-10" fill="#3C4245" x="0" y="40" width="16" height="32"></rect>
+                            </g>
+                            <g id="finger-joint" transform="translate(64.000000, 96.000000)">
+                                <g id="Path-3">
+                                    <mask id="mask-8" fill="white">
+                                        <use xlink:href="#path-7"></use>
+                                    </mask>
+                                    <use id="Mask" fill="#EC9B3B" xlink:href="#path-7"></use>
+                                    <polygon fill="#D27E1B" mask="url(#mask-8)" points="79.8090466 13.8086561 89.6487926 50.851596 32.3295732 47.5717958 32.0029669 16.0060972"></polygon>
+                                </g>
+                                <circle id="Oval-Copy-3" fill="#F7BE16" cx="32" cy="32" r="16"></circle>
+                            </g>
+                        </g>
+                        <g id="finger-1" transform="translate(80.864516, 87.864516) rotate(90.000000) translate(-80.864516, -87.864516) translate(-6.635484, 7.364516)">
+                            <g id="finger-tip" transform="translate(53.392048, 68.439440) rotate(-30.000000) translate(-53.392048, -68.439440) translate(28.892048, 4.439440)">
+                                <g id="Path-4" transform="translate(0.321622, -0.000000)">
+                                    <mask id="mask-10" fill="white">
+                                        <use xlink:href="#path-9"></use>
+                                    </mask>
+                                    <use id="Mask" fill="#EC9B3B" xlink:href="#path-9"></use>
+                                    <polygon fill="#D27E1B" mask="url(#mask-10)" points="48.9282032 24.6189168 89.7115242 57.9801328 20.591978 134.698699 -9 108.953508"></polygon>
+                                </g>
+                                <rect id="Rectangle" fill="#3C4245" x="33" y="-2.16004992e-12" width="16" height="32"></rect>
+                                <rect id="Rectangle-Copy-8" fill="#3C4245" x="33" y="40" width="16" height="32"></rect>
+                            </g>
+                            <g id="Path-5" transform="translate(79.000000, 111.459509)">
+                                <mask id="mask-12" fill="white">
+                                    <use xlink:href="#path-11"></use>
+                                </mask>
+                                <use id="Mask" fill="#EC9B3B" xlink:href="#path-11"></use>
+                                <polygon fill="#D27E1B" mask="url(#mask-12)" points="4.63548407 -47 48.1354841 -24 28.1354841 31.5 0.135484067 19.5"></polygon>
+                            </g>
+                            <g id="finger-joint" transform="translate(47.000000, 95.000000)">
+                                <g id="Path-2" transform="translate(-0.000000, 0.459509)">
+                                    <mask id="mask-14" fill="white">
+                                        <use xlink:href="#path-13"></use>
+                                    </mask>
+                                    <use id="Mask" fill="#EC9B3B" xlink:href="#path-13"></use>
+                                    <polygon fill="#D27E1B" mask="url(#mask-14)" points="23.6354841 -31 61.6354841 -18 48.1354841 35.5 16.1354841 29.5"></polygon>
+                                </g>
+                                <circle id="Oval-Copy-3" fill="#F7BE16" cx="32" cy="33" r="16"></circle>
+                            </g>
+                        </g>
+                        <g id="palm-joint" transform="translate(2.000000, 144.000000)">
+                            <g id="Path-7">
+                                <mask id="mask-16" fill="white">
+                                    <use xlink:href="#path-15"></use>
+                                </mask>
+                                <use id="Mask" fill="#293462" xlink:href="#path-15"></use>
+                                <polygon fill="#091238" mask="url(#mask-16)" points="37.9050067 18 75.9050067 38 55.9050067 69 20.9050067 43.5"></polygon>
+                            </g>
+                            <circle id="Oval-Copy-3" fill="#00818A" cx="32" cy="32" r="16"></circle>
+                        </g>
+                    </g>
+                    <g id="wrist" transform="translate(0.000000, 164.000000)">
+                        <g id="Rectangle" transform="translate(-0.000000, 0.000000)">
+                            <mask id="mask-18" fill="white">
+                                <use xlink:href="#path-17"></use>
+                            </mask>
+                            <use id="Mask" fill="#293462" xlink:href="#path-17"></use>
+                            <polygon fill="#091238" mask="url(#mask-18)" points="16.8592366 26.7754286 46.6127574 37.3100383 28.873665 92.585029 1.57943641 63.3100383"></polygon>
+                        </g>
+                        <circle id="Oval-Copy-3" fill="#00818A" cx="32" cy="32" r="16"></circle>
+                    </g>
+                </g>
+                <g transform="translate(16.857097, 221.619293)">
+                    <mask id="mask-20" fill="white">
+                        <use xlink:href="#path-19"></use>
+                    </mask>
+                    <use id="Mask" fill="#293462" xlink:href="#path-19"></use>
+                    <polygon id="Rectangle" fill="#091238" mask="url(#mask-20)" points="-35.3714792 10.1075225 -12.5048095 -1 24.3813972 30.1112159 -56 59.3358799"></polygon>
+                </g>
+                <g id="elbow" transform="translate(0.000000, 190.000000)">
+                    <g id="Rectangle" transform="translate(0.407424, 0.000000)">
+                        <mask id="mask-22" fill="white">
+                            <use xlink:href="#path-21"></use>
+                        </mask>
+                        <use id="Mask" fill="#293462" xlink:href="#path-21"></use>
+                        <polygon fill="#091238" mask="url(#mask-22)" points="-37 33.5378777 28.5022321 17.0846837 36.054791 48.003268 -30.5144284 67.3045382"></polygon>
+                    </g>
+                    <circle id="Oval-Copy-3" fill="#00818A" cx="33" cy="32" r="16"></circle>
+                </g>
+            </g>
+            <g id="rail" transform="translate(192.000000, 576.000000)">
+                <g id="Shape">
+                    <mask id="mask-24" fill="white">
+                        <use xlink:href="#path-23"></use>
+                    </mask>
+                    <use id="Mask-Copy" fill="#5F6769" xlink:href="#path-23"></use>
+                    <path d="M384,96 L401.5,334.5 L228.5,327.5 L255,96 L384,96 Z M37.5,74.5 L156,119 L110,301.5 L-64,301.5 L37.5,74.5 Z M604,73.5 L672.5,241.5 L521,292.5 L482,111 L604,73.5 Z" fill="#394649" mask="url(#mask-24)"></path>
+                </g>
+                <path d="M545.255,191.99 L544,192 L497.249,192 L497.249,208 L544.005947,208 C544.491705,208 544.976182,207.996851 545.460329,207.990647 L545.255,191.99 Z M485.24936,192 L437.249,192 L437.249,208 L485.24936,208 L485.24936,192 Z M425.24936,192 L377.249,192 L377.249,208 L425.24936,208 L425.24936,192 Z M365.24936,192 L317.249,192 L317.249,208 L365.24936,208 L365.24936,192 Z M305.24936,192 L257.249,192 L257.249,208 L305.24936,208 L305.24936,192 Z M245.24936,192 L197.249,192 L197.249,208 L245.24936,208 L245.24936,192 Z M185.24936,192 L137.249,192 L137.249,208 L185.24936,208 L185.24936,192 Z M96,192 C89.6136442,192 83.3729396,191.376393 77.3354575,190.186751 L74.2423294,205.884922 C81.3627053,207.287935 88.6402095,208 96,208 L125.24936,208 L125.24936,192 L96,192 Z M601.290373,173.03863 C588.665836,182.442288 573.651171,188.815971 557.323116,191.082941 L559.523635,206.930897 C578.251082,204.330763 595.840544,197.048883 610.848036,185.870274 L601.290373,173.03863 Z M65.7372854,187.132684 C50.2956369,182.00752 36.5941551,173.067382 25.7500655,161.429496 L14.0445302,172.337312 C26.8236112,186.051708 42.8558272,196.396589 60.6977574,202.318308 L65.7372854,187.132684 Z M635.55848,124.948005 C630.653924,140.475 621.908835,154.296122 610.437806,165.296778 L621.51206,176.844976 C635.039709,163.872102 645.15192,147.697147 650.815515,129.767019 L635.55848,124.948005 Z M18.1453205,152.178285 C8.93166411,139.431836 2.77138916,124.332895 0.736995415,107.953961 L-15.1410599,109.925601 C-12.8091769,128.70036 -5.78182338,146.388764 5.17799463,161.551036 L18.1453205,152.178285 Z M635.161752,65.8250068 C638.300947,75.3138955 640,85.4585302 640,96 C640,101.907367 639.466429,107.690111 638.444851,113.302668 L654.186201,116.167959 C655.390834,109.549732 655.999994,102.807128 655.999994,95.9662074 C655.995836,83.8871313 654.075064,72.0532582 650.352122,60.7998035 L635.161752,65.8250068 Z M11.8044115,49.8421507 L-2.21873485,42.1381668 C-11.1914159,58.4703448 -15.9763821,76.8360432 -15.9999127,95.8588745 L7.60900363e-05,95.8778196 C0.0208588365,79.1928227 4.29815555,63.5050815 11.8044115,49.8421507 Z M600.214236,18.1713194 C613.180521,27.5529792 623.709733,40.0954016 630.671741,54.6684558 L645.108877,47.7714193 C637.022532,30.8448607 624.779865,16.1967668 609.593647,5.20881026 L600.214236,18.1713194 Z M54.7810349,9.27456635 L47.9028779,-5.17157348 C30.9660777,2.89252491 16.302705,15.1158034 5.29519737,30.2871239 L18.2457948,39.6829755 C27.6435048,26.7304867 40.1985497,16.2177188 54.7810349,9.27456635 Z M544,0 C560.686646,0 576.378927,4.25738227 590.049881,11.7451854 L597.735999,-2.28776134 C581.393771,-11.2386719 563.023315,-16 544,-16 L544,0 Z M113.501272,1.96820338e-12 L113.501272,-16 L95.9586606,-16 C83.9290507,-15.9949244 72.1437985,-14.0893031 60.9325284,-10.3959386 L65.9387014,4.80071341 C75.3949139,1.6855118 85.5006208,1.96820338e-12 96,1.96820338e-12 L113.501272,1.96820338e-12 Z M173.50128,-16 L125.501,-16 L125.501,0 L173.50128,0 L173.50128,-16 Z M233.50128,-16 L185.501,-16 L185.501,0 L233.50128,0 L233.50128,-16 Z M293.50128,-16 L245.501,-16 L245.501,0 L293.50128,0 L293.50128,-16 Z M353.50128,-16 L305.501,-16 L305.501,0 L353.50128,0 L353.50128,-16 Z M413.50128,-16 L365.501,-16 L365.501,0 L413.50128,0 L413.50128,-16 Z M473.50128,-16 L425.501,-16 L425.501,0 L473.50128,0 L473.50128,-16 Z M533.50128,-16 L485.501,-16 L485.501,0 L533.50128,0 L533.50128,-16 Z" id="Mask" fill="#3C4245" fill-rule="nonzero"></path>
+                <circle id="Oval" fill="#719192" cx="320" cy="96" r="64"></circle>
+                <circle id="Oval-Copy-2" fill="#719192" cx="96" cy="96" r="64"></circle>
+                <circle id="Oval-Copy" fill="#719192" cx="544" cy="96" r="64"></circle>
+            </g>
+        </g>
+    </g>
+</svg>
