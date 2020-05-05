@@ -19,7 +19,7 @@ jobs:
           # build repo
           (PATH=$(npm bin):$PATH && codedoc build)
           # copy assets
-          cp logo-cropped.svg dist/docs/
+          cp banner.svg dist/docs/
           cp favicon.ico dist/docs/
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@releases/v3
