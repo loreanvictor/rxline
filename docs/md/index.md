@@ -20,7 +20,7 @@ Typical usage of **RxLine** looks like this:
 1. You define some (sync or async) transformations on the objects of the _line_ (called its _transform_),
 1. You request the line to be processed, i.e. its _transform_ to be applied on its _content_.
 
-```ts
+```ts | --wmbar
 import { line } from 'rxline';
 
 line([1, 2, 3, 4])         // --> define the line
@@ -32,7 +32,10 @@ line([1, 2, 3, 4])         // --> define the line
 // [13, 15, 17, 19]
 ```
 
-```ts
+> :Buttons
+> > :CopyButton
+
+```ts | --wmbar
 import { concurrently } from 'rxline';
 import { files, mapContent, readFile, writeFile, pathMatch } from 'rxline/fs';
 
@@ -49,5 +52,8 @@ files('./src')                                // --> define the line
 // Result:
 // adds a first line `/** @file module/filename.js **/` to each javascript file in `./src`
 ```
+
+> :Buttons
+> > :CopyButton
 
 > :ToCPrevNext

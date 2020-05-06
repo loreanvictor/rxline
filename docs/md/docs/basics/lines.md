@@ -166,7 +166,7 @@ The method with which the transform is applied to the line's content is called a
 **RxLine** comes with two simple processing strategies: `sequentially` (one by one) and `concurrently` 
 (all at once, in parallel). By default, `.collect()` uses `sequentially`, but you can provide it the processing strategy you need:
 
-```ts
+```ts | --wmbar
 import { of } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import { line, concurrently, sequentially } from 'rxline';
@@ -185,6 +185,9 @@ line([1, 2, 3, 4])
 // Result:
 // [12, 9, 6, 3]
 ```
+
+> :Buttons
+> > :CopyButton
 
 <br>
 
@@ -206,7 +209,11 @@ l2.content$.subscribe(console.log);
 Similar to `.collect()`, you can provide a processing strategy to `.process()`. 
 By default it will use `sequentially`.
 
-```ts
+```ts | --wmbar
+import { of } from 'rxjs';
+import { delay } from 'rxjs/operators';
+import { line, concurrently } from 'rxline';
+
 line([1, 2, 3, 4])
   .pipe(x => of(x * 3).pipe(delay(100 - (10 * x))))
   .peek(console.log)
@@ -215,5 +222,8 @@ line([1, 2, 3, 4])
 // Result:
 // 12, 9, 6, 3
 ```
+
+> :Buttons
+> > :CopyButton
 
 > :ToCPrevNext
