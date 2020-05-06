@@ -16,7 +16,7 @@ function triple(x) {
 line([1, 2, 3, 4])
 .pipe(
   triple,                                          // --> triple the number
-  handleError(error => console.log(error.message)) // --> log the errors
+/*!*/  handleError(error => console.log(error.message)) // --> log the errors
 )
 .collect(console.log);
 
@@ -34,9 +34,9 @@ The error handler function will also be provided with the input in the _line con
 line([1, 2, 3, 4])
 .pipe(
   triple,
-  handleError((err, num) => {
-    console.log(`ERROR FOR ${num}:: ${err.message}`);
-  })
+/*!*/  handleError((err, num) => {                         // --> argument `num` is the number on which the error occured.
+/*!*/    console.log(`ERROR FOR ${num}:: ${err.message}`);
+/*!*/  })
 )
 .collect(console.log);
 
@@ -53,7 +53,7 @@ line([1, 2, 3, 4])
   triple,
   handleError((err, num, rethrow) => {
     console.log(`ERROR FOR ${num}`);
-    rethrow(err);
+/*!*/    rethrow(err);
   })
 )
 .collect(console.log);

@@ -88,7 +88,7 @@ You can use `.collect()` method to apply the final `transform` and collect the r
 line([1, 2, 3, 4])
   .pipe(x => x * 2)
   .pipe(x => x + 3)
-  .collect(console.log);
+/*!*/  .collect(console.log);
 
 // Result:
 // [5, 7, 9, 11]
@@ -100,7 +100,7 @@ line([1, 2, 3, 4])
 
 ```ts
 line([1, 2, 3, 4])
-  .pick(x => x % 2 == 1)   // --> only pick odd numbers
+/*!*/  .pick(x => x % 2 == 1)   // --> only pick odd numbers
   .pipe(x => x * 2)
   .collect(console.log);
 
@@ -110,7 +110,7 @@ line([1, 2, 3, 4])
 
 ```ts
 line([1, 2, 3, 4])
-  .drop(x => x % 2 == 1)   // --> drop odd numbers
+/*!*/  .drop(x => x % 2 == 1)   // --> drop odd numbers
   .pipe(x => x * 2)
   .collect(console.log);
 
@@ -135,7 +135,7 @@ line(...).pick(async x => {
 line([1, 2, 3, 4])
   .peek(console.log)
   .pipe(x => x * 2)
-  .peek(console.log)
+/*!*/  .peek(console.log)
   .collect(console.log);
 
 // Result:
@@ -156,7 +156,7 @@ passed to given callback:
 line([1, 2, 3, 4])
   .pipe(x => x * 10)
   .drop(x => x > 35)
-  .collect(r => console.log(r.length));
+/*!*/  .collect(r => console.log(r.length));
 
 // Result:
 // 3
@@ -169,18 +169,18 @@ The method with which the transform is applied to the line's content is called a
 ```ts | --wmbar
 import { of } from 'rxjs';
 import { delay } from 'rxjs/operators';
-import { line, concurrently, sequentially } from 'rxline';
+/*!*/import { line, concurrently, sequentially } from 'rxline';
 
 line([1, 2, 3, 4])
   .pipe(x => of(x * 3).pipe(delay(100 - (10 * x))))
-  .collect(sequentially, console.log);
+/*!*/  .collect(sequentially, console.log);
 
 // Result:
 // [3, 6, 9, 12]
 
 line([1, 2, 3, 4])
   .pipe(x => of(x * 3).pipe(delay(100 - (10 * x))))
-  .collect(concurrently, console.log);
+/*!*/  .collect(concurrently, console.log);
 
 // Result:
 // [12, 9, 6, 3]
@@ -217,7 +217,7 @@ import { line, concurrently } from 'rxline';
 line([1, 2, 3, 4])
   .pipe(x => of(x * 3).pipe(delay(100 - (10 * x))))
   .peek(console.log)
-  .process(concurrently);
+/*!*/  .process(concurrently);
 
 // Result:
 // 12, 9, 6, 3

@@ -20,9 +20,9 @@ Assume we have the following file structure:
 You can get all files like this:
 
 ```ts | --wmbar
-import { files } from 'rxline/fs';
+/*!*/import { files } from 'rxline/fs';
 
-files('.')
+/*!*/files('.')
   .peek(f => console.log(f.path))
   .process();
 
@@ -43,7 +43,7 @@ files('.')
 You can turn off the recursive scan:
 
 ```ts
-files('.', { recursive: false })
+/*!*/files('.', { recursive: false })
   .peek(f => console.log(f.path))
   .process();
 
@@ -55,7 +55,7 @@ files('.', { recursive: false })
 You can change scan root:
 
 ```ts
-files('.', { root: 'bavaria' })
+/*!*/files('.', { root: 'bavaria' })
   .peek(f => console.log(f.path))
   .process();
 
@@ -69,7 +69,7 @@ files('.', { root: 'bavaria' })
 Or specify search directory:
 
 ```ts
-files('munich', { root: 'bavaria' })
+/*!*/files('munich', { root: 'bavaria' })
   .peek(f => console.log(f.path))
   .process();
 
@@ -86,7 +86,7 @@ files('munich', { root: 'bavaria' })
 import { files, pathMatch } from 'rxline/fs';
 
 files('bavaria')                  // --> scan files in `bavaria`
-  .pick(pathMatch(/\.js$/))       // --> pick those with `.js` extension
+/*!*/  .pick(pathMatch(/\.js$/))       // --> pick those with `.js` extension
   .peek(f => console.log(f.path))
   .process();
 
@@ -101,7 +101,7 @@ files('bavaria')                  // --> scan files in `bavaria`
 
 ```ts
 files('.')
-  .drop(pathMatch(/\/munich\//))   // --> drop files in `munich` folder
+/*!*/  .drop(pathMatch(/\/munich\//))   // --> drop files in `munich` folder
   .peek(f => console.log(f.path))
   .process();
 
@@ -131,10 +131,10 @@ files('munich', { root: 'bavaria')
 You can load file contents using `readFile()`:
 
 ```ts | --wmbar
-import { files, readFile } from 'rxline/fs';
+/*!*/import { files, readFile } from 'rxline/fs';
 
 files('munich', { root: 'bavaria')
-  .pipe(readFile())
+/*!*/  .pipe(readFile())
   .peek(f => console.log(f.path + ' : ' + f.content.split('\n').length + ' lines'))
   .process();
 
@@ -154,15 +154,15 @@ You can use `mapContent()` to modify file contents, and `writeFile()` to save th
 
 ```ts | --wmbar
 import { concurrently } from 'rxline';
-import { files, pathMatch, readFile, writeFile, mapContent } from 'rxline/fs';
+/*!*/import { files, pathMatch, readFile, writeFile, mapContent } from 'rxline/fs';
 
 files('.', { root: 'bavaria' })                                   // --> all files with root: `bavaria/`
   .pick(pathMatch(/\.js$/))                                       // --> pick `.js` files
-  .pipe(readFile(),                                               // --> read'em
-        mapContent(
-          (content, path) => `/** file: ${path} **/\n` + content  // --> modify the content (in memory)
-        ),
-        writeFile())                                              // --> save them
+/*!*/  .pipe(readFile(),                                               // --> read'em
+/*!*/        mapContent(
+/*!*/          (content, path) => `/** file: ${path} **/\n` + content  // --> modify the content (in memory)
+/*!*/        ),
+/*!*/        writeFile())                                              // --> save them
   .process(concurrently);                                         // --> all in parallel.
 
 // Adds first line `/** file: garching.js **/` to `bavaria/garching.js`
@@ -185,7 +185,7 @@ import { files, readFile, writeFile, mapPath, pathMatch } from 'rxline/fs';
 files('.')
   .drop(pathMatch(/\.js$/))              // --> drop all `.js` files
   .pipe(readFile(),                      // --> read the rest
-        mapPath(path => path + '.bak'),  // --> add `.bak` to their path
+/*!*/        mapPath(path => path + '.bak'),  // --> add `.bak` to their path
         writeFile())                     // --> save them.
   .process();
 
@@ -202,7 +202,7 @@ import { files, readFile, writeFile, mapExt } from 'rxline/fs';
 
 files('.', { root : 'bavaria' })
   .pipe(readFile(),                   // --> read the files
-        mapExt(ext => 'bak' + ext),   // --> suffix `bak` to their extension
+/*!*/        mapExt(ext => 'bak' + ext),   // --> suffix `bak` to their extension
         writeFile())                  // --> save them.
   .process();
 
@@ -222,7 +222,7 @@ import { files, readFile, writeFile, mapExt, mapRoot } from 'rxline/fs';
 
 files('munich', { root : 'bavaria' })
   .pipe(readFile(),                // --> read the files
-        mapRoot(() => 'backup'),   // --> change their root to `backup/`
+/*!*/        mapRoot(() => 'backup'),   // --> change their root to `backup/`
         writeFile())               // --> save them.
   .process();
 

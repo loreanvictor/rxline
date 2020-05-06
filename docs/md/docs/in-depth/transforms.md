@@ -13,13 +13,13 @@ Working with these functions can be inconvenient due to different possible retur
 **RxLine** provides the `Transform` class and `transform()` function to address that inconvenience:
 
 ```ts | --wmbar
-import { transform } from 'rxline';
+/*!*/import { transform } from 'rxline';
 import { from } from 'rxjs';
 
 
-const X = transform(async x => await somefunc(x));
-const Y = transform(x => from([x, x + 1]));
-const Z = X.combine(Y);
+/*!*/const X = transform(async x => await somefunc(x));
+/*!*/const Y = transform(x => from([x, x + 1]));
+/*!*/const Z = X.combine(Y);
 Z.apply(42).subscribe(console.log);
 
 // Result:
@@ -34,7 +34,7 @@ Z.apply(42).subscribe(console.log);
 
 ```ts
 const Z = transform(async x => await somefunc(x))
-           .combine(x => from([x, x + 1]));
+/*!*/           .combine(x => from([x, x + 1]));
 ```
 
 `Transforms` are the objects that you should provide to a _line_'s `.pipe()` method. 
@@ -45,8 +45,8 @@ method:
 const l = line(...); // --> or files(...) or any other line generator
 
 // These two are equivalent
-l.pipe(x => x + 2);             // --> These two are equivalent
-l.pipe(transform(x => x + 2));  // --> These two are equivalent
+/*!*/l.pipe(x => x + 2);             // --> These two are equivalent
+/*!*/l.pipe(transform(x => x + 2));  // --> These two are equivalent
 ```
 
 Additionally, chaining pipe on a _line_ (or providing multiple arguments to it) is equivalent 
@@ -56,9 +56,9 @@ of calling `.combine()` on the _line_'s transform:
 const l = line(...);
 
 // These three are equivalent:
-l.pipe(transformA).pipe(transformB).pipe(transformC);       // --> These three are equivalent
-l.pipe(transformA, transformB, transformC);                 // --> These three are equivalent
-l.pipe(transformA.combine(transformB).combine(transformC)); // --> These three are equivalent
+/*!*/l.pipe(transformA).pipe(transformB).pipe(transformC);       // --> These three are equivalent
+/*!*/l.pipe(transformA, transformB, transformC);                 // --> These three are equivalent
+/*!*/l.pipe(transformA.combine(transformB).combine(transformC)); // --> These three are equivalent
 ```
 
 Which can be helpful in writing your own custom transforms:
