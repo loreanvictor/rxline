@@ -61,13 +61,18 @@ export class Line<I, O> {
   }
 
   collect(collector: Function<O[], unknown>): Subscription;
-  collect(strategy: ProcessingStrategy<I, O>, collector: Function<O[], unknown>): Subscription;
+  collect(
+    strategy: ProcessingStrategy<I, O>,
+    collector: Function<O[], unknown>,
+    handler?: (error: any) => void,
+  ): Subscription;
   collect(collectorOrStrategy: Function<O[], unknown> | ProcessingStrategy<I, O>, 
-          collector?: Function<O[], unknown>) {
+          collector?: Function<O[], unknown>,
+          handler?: (error: any) => void) {
     const strategy = collector ? collectorOrStrategy as ProcessingStrategy<I, O> : sequentially;
     return this.prep(strategy).content$
       .pipe(toArray())
-      .subscribe(collector || (collectorOrStrategy as Function<O[], unknown>));
+      .subscribe(collector || (collectorOrStrategy as Function<O[], unknown>), handler);
   }
 }
 

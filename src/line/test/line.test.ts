@@ -4,7 +4,7 @@ import { toArray, delay } from 'rxjs/operators';
 import { line, Line } from '../line';
 import { transform } from '../transform';
 import { mod } from '../modifier';
-import { concurrently } from '../process';
+import { concurrently, sequentially } from '../process';
 
 
 describe('line()', () => {
@@ -264,6 +264,16 @@ describe('line()', () => {
           r.should.eql([12, 9, 3]);
           done();
         });
+    });
+
+    it('should also accept an error handler for handling errors.', done => {
+      const err = {};
+      line([1, 2, 3, 4])
+      .pipe(() => { throw err; })
+      .collect(sequentially, () => {}, e => {
+        e.should.eql(err);
+        done();
+      });
     });
   });
 });
